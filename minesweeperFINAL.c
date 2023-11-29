@@ -39,18 +39,18 @@ int boardXsize, boardYsize, minecount, minesplaced = 0;
             printf("Error - Invalid Input");
             return 0;
             };
-   /* printf("enter first cordanents to dig\n");
+   /**/ printf("enter first cordanents to dig\n");
         
         printf("enter x-cordnate value: ");
             scanf("%i", &playerx);
 
         printf("enter y-cordnate value: ");
             scanf("%i", &playery);
-*/
+/**/
         do {
             for (y = 0; y < boardYsize; y++) {
                 for (x = 0; x < boardXsize; x++) {
-                    solutionboard[x][y] = '0';
+                    solutionboard[x][y] = 0;
                     }
                 }
 
@@ -58,37 +58,39 @@ int boardXsize, boardYsize, minecount, minesplaced = 0;
                 srand(time(0));
             x = rand() % boardXsize;
             y = rand() % boardYsize;
-            if (solutionboard[x][y] == '0') {
-                solutionboard[x][y] = '9';
+            if (solutionboard[x][y] == 0) {
+                solutionboard[x][y] = 9;
                 minesplaced++;
                 }
             }
-            /*if((solutionboard[playerx-1][playery-1]) = 0) */{i++;}
-        }while (i = 0);
-    for (y = 0; y < boardYsize; y++) {
+             for (y = 0; y < boardYsize; y++) {
             for (x = 0; x < boardXsize; x++) {
-                if((solutionboard[x][y]) = 9) {}
+                if((solutionboard[x][y]) == 9) {}
+                    
                     else{
-                        if(solutionboard[x-1][y-1]){solutionboard[x][y] += 1;} 
-                        if(solutionboard[x][y-1]){solutionboard[x][y] += 1;} 
-                        if(solutionboard[x+1][y-1]){solutionboard[x][y] += 1;} 
+                        if(solutionboard[x-1][y-1]  == 9){solutionboard[x][y]++;} 
+                        if(solutionboard[x][y-1]    == 9){solutionboard[x][y]++;} 
+                        if(solutionboard[x+1][y-1]  == 9){solutionboard[x][y]++;} 
                         
-                        if(solutionboard[x-1][y]){solutionboard[x][y] += 1;} 
-                        if(solutionboard[x+1][y]){solutionboard[x][y] += 1;} 
+                        if(solutionboard[x-1][y]    == 9){solutionboard[x][y]++;} 
+                        if(solutionboard[x+1][y]    == 9){solutionboard[x][y]++;} 
                         
-                        if(solutionboard[x-1][y+1]) {solutionboard[x][y] += 1;} 
-                        if(solutionboard[x][y+1])   {solutionboard[x][y] += 1;} 
-                        if(solutionboard[x+1][y+1]) {solutionboard[x][y] += 1;} 
+                        if(solutionboard[x-1][y+1]  == 9){solutionboard[x][y]++;} 
+                        if(solutionboard[x][y+1]    == 9){solutionboard[x][y]++;} 
+                        if(solutionboard[x+1][y+1]  == 9){solutionboard[x][y]++;} 
                         } 
                     }
                 }
+            if((solutionboard[playerx-1][playery-1]) == 0){i++;}
+        }while (i = 0);
+
 //print print solotion board for testing
-for(y = 0; y < boardYsize; y++){
+/* */for(y = 0; y < boardYsize; y++){
             for(x = 0; x < boardXsize; x++){
-                    printf("%c ", solutionboard[x][y]);
+                    printf("%i ", solutionboard[x][y]);
                 }
             printf("\n");
-            }
+            }/**/
   /*  while(score != (boardXsize * boardYsize - minecount) || score < 999){
         for(int y = 1; y < boardYsize; y++){
             for(int x = 0; x < boardXsize; x++){
