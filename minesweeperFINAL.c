@@ -3,7 +3,7 @@
 #include <time.h>
 
 int main(){
-int i = 0, x = 0, y = 0;
+int i = 0, j = 0, x = 0, y = 0;
 int solutionboard[30][16];
 char gameboard[30][16], Move;
 for (y = 0; y < 16; y++) {
@@ -11,13 +11,14 @@ for (y = 0; y < 16; y++) {
                         gameboard[x][y] = '?';
                 }
         }
-int dif, score, playerx = 0, playery = 0;  
+int dif, score = 0, playerx = 0, playery = 0;  
 int boardXsize, boardYsize, minecount, minesplaced = 0;
-        printf("let's play minesweeper\nDifficultys\n");
-        printf("1 - beginner     - 10 mines -  9 * 9  grid\n");
-        printf("2 - Intermediate - 40 mines - 16 * 16 grid\n");
-        printf("3 - Advanced     - 99 mines - 30 * 16 grid\n Enter dificulty (#) : ");
-    scanf("%i", &dif);
+
+printf("let's play minesweeper\nDifficultys\n");
+    printf("1 - beginner     - 10 mines -  9 * 9  grid\n");
+    printf("2 - Intermediate - 40 mines - 16 * 16 grid\n");
+    printf("3 - Advanced     - 99 mines - 30 * 16 grid\n Enter dificulty (#) : ");
+        scanf("%i", &dif);
     
     switch (dif){
         case 1:
@@ -82,31 +83,44 @@ int boardXsize, boardYsize, minecount, minesplaced = 0;
                     }
                 }
             if((solutionboard[playerx-1][playery-1]) == 0){i++;}
-        }while (i = 0);
-
+        }while (i == 0);
+i=0;
 //print print solotion board for testing
 /* */for(y = 0; y < boardYsize; y++){
             for(x = 0; x < boardXsize; x++){
                     printf("%i ", solutionboard[x][y]);
                 }
             printf("\n");
-            }/**/
-  /*  while(score != (boardXsize * boardYsize - minecount) || score < 999){
-        for(int y = 1; y < boardYsize; y++){
-            for(int x = 0; x < boardXsize; x++){
-                    printf("%c ", gameboard[x][y]);
-                }
-            printf("\n");
-            }
-    printf("Enter your move.    d. dig  f. flag/unflag : ");
-        scanf("%c", Move);
-    printf("enter x-cordnate value: ");
+            }/* */         
+   
 
+while(score < (boardXsize * boardYsize - minecount)){
+    for(int y = 1; y < boardYsize; y++){
+        for(int x = 0; x < boardXsize; x++){
+                printf("%c ", gameboard[x][y]);
+            }
+        printf("\n");
+        }
+while (j == 0)
+{
+    printf("Enter your move.    d. dig  f. flag/unflag : ");
+    scanf("%c", &Move);
+        if ((Move == 'f') || (Move == 'F') || (Move == 'd') || (Move == 'D'))
+        {
+            j = 1;
+        }
         
+}
+j = 0;
+
+printf("enter x-cordnate value: ");
+
+score += 10000;
+
     }
 
-if(score = (boardXsize * boardYsize - minecount)){printf("congrats you win\n");}
+if(score == boardXsize * boardYsize - minecount){printf("congrats you win\n");}
 else{printf("sorry you lost try again\n");}
- */   
+    
     return 0;
 }
