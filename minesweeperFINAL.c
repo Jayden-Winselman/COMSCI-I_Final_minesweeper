@@ -5,14 +5,21 @@
 int main(){
 int i = 0, j = 0, x = 0, y = 0;
 int solutionboard[30][16];
-char gameboard[30][16], Move;
+char gameboard[30][16];
 for (y = 0; y < 16; y++) {
                 for (x = 0; x < 30; x++) {
-                        gameboard[x][y] = '?';
+                        gameboard[x][y] = 219;
+                }
+        }
+int openspace[30][16]; //score counter
+for (y = 0; y < 16; y++) {
+                for (x = 0; x < 30; x++) {
+                        openspace[x][y] = 0;
                 }
         }
 int dif, score = 0, playerx = 0, playery = 0;  
 int boardXsize, boardYsize, minecount, minesplaced = 0;
+char Move;
 
 printf("let's play minesweeper\nDifficultys\n");
     printf("1 - beginner     - 10 mines -  9 * 9  grid\n");
@@ -84,38 +91,83 @@ printf("let's play minesweeper\nDifficultys\n");
                 }
             if((solutionboard[playerx-1][playery-1]) == 0){i++;}
         }while (i == 0);
+    
 i=0;
 //print print solotion board for testing
-/* */for(y = 0; y < boardYsize; y++){
+/* */
+    printf("solution board\n");
+    for(y = 0; y < boardYsize; y++){
             for(x = 0; x < boardXsize; x++){
                     printf("%i ", solutionboard[x][y]);
                 }
             printf("\n");
-            }/* */         
-   
-
+            }
 while(score < (boardXsize * boardYsize - minecount)){
-    for(int y = 1; y < boardYsize; y++){
+  openspace[playerx-1][playery-1] = 1;
+  do
+  { 
+    i = 0;
+     for(y = 0; y < boardYsize; y++){
+            for(x = 0; x < boardXsize; x++){
+            
+            if (openspace[x][y] == 1 && solutionboard[x][y] == 0)
+            {             
+                if(openspace[x-1][y-1]  == 0){openspace[x-1][y-1] = 1; i++;} 
+                if(openspace[x][y-1]    == 0){openspace[x][y-1] = 1; i++; } 
+                if(openspace[x+1][y-1]  == 0){openspace[x+1][y-1] = 1; i++; } 
+                
+                if(openspace[x-1][y]    == 0){openspace[x-1][y] = 1; i++; } 
+                if(openspace[x+1][y]    == 0){openspace[x+1][y] = 1; i++; } 
+                        
+                if(openspace[x-1][y+1]  == 0){openspace[x-1][y+1] = 1; i++; } 
+                if(openspace[x][y+1]    == 0){openspace[x][y+1] = 1; i++; } 
+                if(openspace[x+1][y+1]  == 0){openspace[x+1][y+1] = 1; i++; }
+                
+                
+            }
+            
+        }
+     }
+  } while (i != 0);
+  
+  
+  
+  //print spaces dugged
+    printf("open space board\n");
+    for(y = 0; y < boardYsize; y++){
+            for(x = 0; x < boardXsize; x++){
+                    printf("%i ", openspace[x][y]);
+                }
+            printf("\n");
+            }/* */    
+    printf("game board\n");  
+    for(int y = 0; y < boardYsize; y++){
         for(int x = 0; x < boardXsize; x++){
-                printf("%c ", gameboard[x][y]);
+            if (openspace[x][y] == 1)
+            {
+                gameboard[x][y] = solutionboard[x][y] + 48;
+            }}}
+    for(int y = 0; y < boardYsize; y++){
+        for(int x = 0; x < boardXsize; x++){
+                printf("%c ",gameboard[x][y]);
             }
         printf("\n");
         }
-while (j == 0)
-{
-    printf("Enter your move.    d. dig  f. flag/unflag : ");
-    scanf("%c", &Move);
+    while (i == 0)
+    {
+      printf("Enter your move.\nd. dig  f. flag/unflag : ");
+      scanf(" %c", &Move);
         if ((Move == 'f') || (Move == 'F') || (Move == 'd') || (Move == 'D'))
         {
-            j = 1;
+            i = 1;
         }
         
-}
-j = 0;
+    }
+    i = 0;
 
-printf("enter x-cordnate value: ");
+    printf("enter x-cordnate value: ");
 
-score += 10000;
+    score += 10000;
 
     }
 
