@@ -93,15 +93,7 @@ printf("let's play minesweeper\nDifficultys\n");
         }while (i == 0);
     
 i=0;
-//print print solotion board for testing
-/* */
-    printf("solution board\n");
-    for(y = 0; y < boardYsize; y++){
-            for(x = 0; x < boardXsize; x++){
-                    printf("%i ", solutionboard[x][y]);
-                }
-            printf("\n");
-            }
+
 while(score < (boardXsize * boardYsize - minecount)){
   openspace[playerx-1][playery-1] = 1;
   do
@@ -129,17 +121,6 @@ while(score < (boardXsize * boardYsize - minecount)){
         }
      }
   } while (i != 0);
-  
-  
-  
-  //print spaces dugged
-    printf("open space board\n");
-    for(y = 0; y < boardYsize; y++){
-            for(x = 0; x < boardXsize; x++){
-                    printf("%i ", openspace[x][y]);
-                }
-            printf("\n");
-            }/* */    
     printf("game board\n");  
     for(int y = 0; y < boardYsize; y++){
         for(int x = 0; x < boardXsize; x++){
@@ -161,18 +142,38 @@ while(score < (boardXsize * boardYsize - minecount)){
         {
             i = 1;
         }
-        
+          if (Move == '0')
+        {
+               printf("solution board\n");
+    for(y = 0; y < boardYsize; y++){
+            for(x = 0; x < boardXsize; x++){
+                    printf("%i ", solutionboard[x][y]);
+                }
+            printf("\n");
+            }
+               printf("open space board\n");
+    for(y = 0; y < boardYsize; y++){
+            for(x = 0; x < boardXsize; x++){
+                    printf("%i ", openspace[x][y]);
+                }
+            printf("\n");
+            }
+        return 0;
+
+        }
     }
     i = 0;
 
     printf("enter x-cordnate value: ");
-
-    score += 10000;
+        scanf(" %i", &playerx);
+    printf("enter y-cordnate value: ");
+        scanf(" %i", &playery);
+    
 
     }
 
-if(score == boardXsize * boardYsize - minecount){printf("congrats you win\n");}
-else{printf("sorry you lost try again\n");}
+if(score < 999){printf("congrats you win!\n");}
+else{printf("sorry, you lost try again\n");}
     
     return 0;
 }
